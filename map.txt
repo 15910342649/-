@@ -1,0 +1,18 @@
+API就是文档
+百度地图  高德地图
+ ssh相当于秘钥
+css js
+
+物理地址：cmd里输入ipconfig
+百度地图秘钥  cWWkOZ5eaS97BCZPCZzUaW7BBZcLF0gN
+
+map 
+1.地图  
+2.es6中的循环 
+3.资源映射 index。html omdex。html。map
+4.锚点链接  选中区域可以实现某种事件 由点连接成区域
+<map>
+    <area></area>
+</map>
+
+webGl 大数据展示：15k 

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<style type="text/css">
+	body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+	</style>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=cWWkOZ5eaS97BCZPCZzUaW7BBZcLF0gN"></script>
+	<title>地图展示</title>
+</head>
+<body>
+	<div id="allmap" ></div>
+</body>
+</html>
+<script type="text/javascript">
+	// 百度地图API功能
+	var map = new BMap.Map("allmap");    // 创建Map实例  面向对象的思想
+	 
+// 	$.ajax({
+// 		url:"",
+// 		type:"get",
+// 		async:false,
+// 		data:{}
+// 	}).done(function(result){
+// 		var point=
+		// 
+	// 用于获取动态坐标
+	// })
+	map.centerAndZoom(new BMap.Point(116.404, 39.915), 19);
+	// 初始化地图,设置中心点坐标和地图级别 
+		// centerAndZoom zoom基点 缩放比例
+	//添加地图类型控件
+	// new BMap.Point(经度 纬度)
+
+	map.addControl(new BMap.MapTypeControl({
+		mapTypes:[
+            BMAP_NORMAL_MAP,  //显示普通街道
+            BMAP_HYBRID_MAP  //混合地图  卫星和路网的混合式图
+        ]}));	  
+	map.setCurrentCity("北京");          // 设置地图显示的城市 此项是必须设置的
+	map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+	// map.disableScrollWheelZoom(true);     不可以滚轮设置缩放
+       var canvasLayer = new BMap.CanvasLayer({
+			update:update    //数据实时更新
+		})
+ //自定义绘制层
+    function update(){
+		// 绘制canvas绘图工具 2d 3d工具(依赖插件)
+		var ctx=this.canvas.getContext('2d');
+		
+		if(!ctx){
+			return;
+		}
+		
+		//rect  矩形  clearreact 清除矩形 x,y 画布的宽度  画布的高度
+		ctx.clearRect(0,0,ctx.canvas.width,ctx.canvas.height)
+		
+		var temp={}
+		//fillStyle  填充样式 十六进制
+		ctx.fillStyle="rgba(50,50,255,0.4)"
+		
+		ctx.beginpath()  //开始绘制
+		var data=[
+			  new BMap.Point(116.297047,39.979542),
+            new BMap.Point(116.321768,39.88748),
+            new BMap.Point(116.494243,39.956539)
+
+		]
+		
+		 for (var i = 0, len = data.length; i < len; i++) {
+            var pixel = mp.pointToPixel(data[i]);  
+            ctx.fillRect(pixel.x, pixel.y, 30, 30);  //矩形 xy
+        }
+	}
+	// ctx.closePath()  //关闭绘制
+	 map.addOverlay(canvasLayer);
+ // 涉及到canvas布局   用canvas绘制
+
+</script>
